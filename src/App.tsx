@@ -2,7 +2,7 @@
 
 import { Authenticated, Unauthenticated } from "convex/react";
 import { SignIn } from "./SignIn";
-import { SignOut } from "./auth/SignOut";
+// import { SignOut } from "./auth/SignOut";
 import { AnimationWorkSpace } from "./pages/AnimationWorkSpace";
 
 export default function App() {
@@ -10,7 +10,6 @@ export default function App() {
     <>
       <main>
         <Authenticated>
-          <SignOut />
           <AnimationWorkSpace />
         </Authenticated>
         <Unauthenticated>

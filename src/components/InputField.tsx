@@ -1,5 +1,5 @@
 import React, { useState, KeyboardEvent, FormEvent } from "react";
-
+import "@/css/inputField.css";
 interface ChatInputProps {
   onSend: (message: string) => void;
   disabled?: boolean;
@@ -23,13 +23,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex items-center gap-2 p-4 border-t"
-    >
+    <form onSubmit={handleSubmit} className="chat-input-container">
       <input
         type="text"
-        className="flex-grow border rounded-md p-2 outline-none focus:ring-2 focus:ring-blue-500"
+        className="chat-input-field"
         placeholder="Type your message..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -38,7 +35,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }) => {
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+        className="chat-send-button"
         disabled={disabled || !input.trim()}
       >
         Send

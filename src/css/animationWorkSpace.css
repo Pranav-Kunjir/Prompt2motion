@@ -1,0 +1,37 @@
+/* animationWorkSpace.css */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* overflow: hidden; */
+}
+.workspace-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9fafb;
+  font-family: 'Inter', sans-serif;
+}
+
+.workspace-content {
+  display: flex;
+  flex: 1;
+  /* overflow: hidden; */
+}
+
+.chat-section {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  border-right: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.code-section {
+  flex: 3;
+  /* padding: 2vh; */
+  background-color: #0f172a;
+  color: white;
+  overflow-y: hidden;
+
+}
