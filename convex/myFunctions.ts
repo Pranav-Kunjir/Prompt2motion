@@ -100,6 +100,7 @@ export const getUserChats = query({
     const chats = await ctx.db
     .query("chats")
     .withIndex("by_userID", (q) => q.eq("userID", (args.userId || "")))
+    .order("desc")
     .collect()
   return chats;
   }

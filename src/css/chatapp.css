@@ -1,0 +1,53 @@
+.chat-input-animate {
+  animation: slideUpFadeIn 0.5s ease-out;
+}
+
+/* Keyframes for slide + fade effect */
+@keyframes slideUpFadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.bolt-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.bolt-loader {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bolt-loader div {
+  width: 10px;
+  height: 10px;
+  background-color: #4f46e5;
+  border-radius: 50%;
+  animation: bolt-bounce 0.6s infinite alternate;
+}
+
+.bolt-loader div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bolt-loader div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bolt-bounce {
+  from {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}

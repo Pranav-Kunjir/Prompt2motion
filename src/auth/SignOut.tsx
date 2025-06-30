@@ -6,14 +6,13 @@ export function SignOut() {
   return (
     <>
       {isAuthenticated && (
-        <button
+        <p
           className="bg-slate-200 dark:bg-slate-800 text-dark dark:text-light rounded-md px-2 py-1"
           onClick={() => void signOut()}
         >
           Sign out
-        </button>
+        </p>
       )}
     </>
   );
 }
-

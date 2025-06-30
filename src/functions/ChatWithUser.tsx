@@ -14,7 +14,8 @@ export async function ChatWithUser(message: string, code: string) {
                 - Explain in simple language **what changes will be made to the existing code** or
                 - If there is no existing code, explain what the resulting animation will look like.
                 - Focus on describing the visual outcome and purpose of the animation, not how to code it.
-
+                - only give the nessary and short explaination of the changes that will take place to meet the user request need
+                - MAX - 200 to 250 words
                 DO NOT generate or return Python code. Only explain what the animation will do.
 
                 ---

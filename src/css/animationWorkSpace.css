@@ -1,37 +1,56 @@
-/* animationWorkSpace.css */
+/* animationWorkSpace.css - Full Dark Mode */
+
 html,
 body {
   height: 100%;
   margin: 0;
-  /* overflow: hidden; */
+  background-color: #000; /* Pure black background */
+  color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
 }
+
 .workspace-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #f9fafb;
-  font-family: 'Inter', sans-serif;
+  background-color: #000; /* Pure black */
 }
 
 .workspace-content {
   display: flex;
   flex: 1;
-  /* overflow: hidden; */
 }
 
 .chat-section {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
-  border-right: 1px solid #e5e7eb;
-  background-color: #ffffff;
+  background-color: #000; /* Dark gray */
+  border-right: 1px solid #1f1f1f; /* Subtle border */
+  color: #e0e0e0;
 }
 
 .code-section {
   flex: 3;
-  /* padding: 2vh; */
-  background-color: #0f172a;
-  color: white;
+  background-color: #000; /* Slightly lighter dark */
+  color: #f5f5f5;
   overflow-y: hidden;
+}
+.sidebar{
+  flex: 1
+}
 
+/* Optional: Scrollbar styling for better visibility in dark mode */
+.chat-section::-webkit-scrollbar,
+.code-section::-webkit-scrollbar {
+  width: 8px;
+}
+.chat-section::-webkit-scrollbar-thumb,
+.code-section::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+.chat-section::-webkit-scrollbar-track,
+.code-section::-webkit-scrollbar-track {
+  background: #000;
 }

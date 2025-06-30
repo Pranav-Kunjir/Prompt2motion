@@ -3,6 +3,8 @@ import { python } from "@codemirror/lang-python";
 import { api } from "../../convex/_generated/api";
 import { useQuery } from "convex/react";
 import { useState, useEffect } from "react";
+import { barf } from "thememirror"; // theme import
+
 import "@/css/codeEditor.css";
 
 interface CodeEditorProps {
@@ -31,8 +33,8 @@ export function CodeEditor({ chatID }: CodeEditorProps) {
         <CodeMirror
           value={fullCode}
           height="95vh"
+          theme={barf}
           extensions={[python()]}
-          theme="dark"
           readOnly
         />
       )}

@@ -1,127 +1,83 @@
-/* Floating Menu Button */
+/* === Sidebar Toggle Button (Bottom Left) === */
 .sidebar-toggle {
-  position: fixed;
-  top: 1rem;
+  /* position: fixed; */
+  bottom: 1rem;
   left: 1rem;
-  z-index: 60; /* above overlay and sidebar */
-  background: linear-gradient(to right, #2563eb, #1e40af);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.2s ease;
+  /* z-index: 60; */
+  background-color: #1a1a1a; /* very dark grey */
+  color: #e0e0e0;             /* light grey text */
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+  height: 5vh;
 }
 
 .sidebar-toggle:hover {
-  background: linear-gradient(to right, #1d4ed8, #1e3a8a);
+  background-color: #2a2a2a; /* hover: lighter dark */
 }
-
-/* Overlay */
+.left-bar{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 3vh;
+}
+/* === Sidebar Overlay === */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6); /* dark blur */
   backdrop-filter: blur(4px);
   z-index: 40;
 }
 
-/* Sidebar Container */
+/* === Sidebar Container === */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
   width: 18rem;
-  background-color: #0c4a6e;
-  color: white;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  padding: 1.5rem;
-  z-index: 50;
-  transform: translateX(-120%);
+  height: 100%;
+  background-color: #0a0a0a; /* pure black */
+  color: #f0f0f0;             /* light text */
+  transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
+  z-index: 50;
   display: flex;
   flex-direction: column;
+  padding: 1.5rem 1rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .sidebar.open {
   transform: translateX(0);
 }
 
+/* === Sidebar Header === */
 .sidebar h2 {
-  font-size: 1.875rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-  color: #60a5fa;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #d0d0d0; /* slightly off-white */
+  letter-spacing: 0.03em;
 }
 
-/* Sidebar content layout */
+/* === Sidebar Content === */
 .sidebar-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
 }
 
-/* Scrollable Chats */
+/* === Chat List === */
 .sidebar-chats {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 1rem;
-  padding-right: 0.25rem;
-}
-
-/* HIDE SCROLLBAR cross-browser */
-.sidebar-chats {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-.sidebar-chats::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-/* Individual chat */
-.sidebar-chat {
-  cursor: pointer;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
-  background-color: #0c4a6e;
-  transition: background 0.2s ease;
-}
-
-.sidebar-chat:hover {
-  background-color: #2563eb;
-  color: white;
-}
-
-.sidebar-empty {
-  color: #9ca3af;
-  padding: 0.5rem 0.75rem;
-}
-
-/* SignOut area fixed at bottom */
-.signout {
-  padding-top: 1rem;
-  border-top: 1px solid #1e3a8a;
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Ensures full height */
-  overflow: hidden;
-}
-.sidebar-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between; /* Pushes SignOut to the bottom */
-  overflow: hidden;
-}
-.sidebar-chats {
-  overflow-y: auto;
-  flex-grow: 1;
-  padding-right: 0.25rem;
   margin-bottom: 1rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -130,8 +86,111 @@
   display: none;
 }
 
+/* === Chat Item === */
+.sidebar-chat {
+  background-color: #161616;  /* dark grey */
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.4rem;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: #f0f0f0;
+}
+
+.sidebar-chat:hover {
+  background-color: #2a2a2a;  /* grey on hover */
+}
+
+/* === Empty Chat Placeholder === */
+.sidebar-empty {
+  padding: 0.6rem 0.75rem;
+  color: #777; /* muted grey */
+}
+
+/* === Signout Section === */
 .signout {
   padding-top: 1rem;
-  padding-bottom: 4rem;
-  border-top: 1px solid #1e3a8a;
+  padding-bottom: 3rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  border-top: 1px solid #1f1f1f;
+}
+
+/* === Profile Picture Styling === */
+.profile-picture {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;  
+  margin: 5px;            /* makes it circular */
+  object-fit: cover;               /* ensures image doesn't stretch */
+  border: 2px solid #2a2a2a;       /* subtle border */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05); /* soft glow */
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.profile-picture:hover {
+  transform: scale(1.05);          /* slight zoom on hover */
+}
+.bootom-btn{
+  display: flex;
+  flex-direction: column;
+}
+.profile-menu-wrapper {
+  position: relative;
+}
+
+.profile-picture {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.profile-picture:hover {
+  transform: scale(1.05);
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 0px;
+  left: 1px;             /* Align to left of icon */
+  width: 160px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  transform: translateY(-100%); /* Ensure it opens above */
+}
+
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  background: transparent;
+  border: none;
+  color: #eee;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: #222;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #333;
+  margin: 0.4rem 0;
 }
