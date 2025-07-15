@@ -1,0 +1,7 @@
+.card-video {
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 26px;
+  object-fit: cover;
+  pointer-events: none; /* disables right-click menu if desired */
+}

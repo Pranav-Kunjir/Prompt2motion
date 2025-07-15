@@ -23,7 +23,7 @@ body {
 
 .chat-section {
   flex: 1;
-  padding: 1rem;
+  /* padding: 1rem; */
   overflow-y: auto;
   background-color: #000; /* Dark gray */
   border-right: 1px solid #1f1f1f; /* Subtle border */

@@ -3,20 +3,34 @@
   bottom: 3rem;            /* Distance from bottom */
   right: 5rem;             /* Distance from right */
   padding: 0.5rem 1rem;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 8px;
+  margin: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #333333;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
+  font-weight: 500;
+  border-radius: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   z-index: 999;            /* Make sure it's on top */  
 }
 
 .open-video-btn:hover {
-  background-color: #2563eb;
+  background-color: #111111;
+  border-color: #555555;
+  transform: scale(1.03);
+}
+.open-video-btn button:active {
+  background-color: #0a0a0a;
+  transform: scale(0.98);
 }
 
+.open-video-btn button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff33;
+}
 
 .floating-player {
   position: fixed;

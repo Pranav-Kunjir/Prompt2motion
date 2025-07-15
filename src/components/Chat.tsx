@@ -1,12 +1,18 @@
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import "@/css/chat.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Chat(chatId: any) {
   const ID = chatId.chatid;
   const messages = useQuery(api.myFunctions.readMessage, { chatId: ID }) ?? [];
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   return (
     <div className="chat-container">
       {messages.map((item) => (
@@ -16,6 +22,8 @@ export function Chat(chatId: any) {
           isLLM={item.isLLM}
         />
       ))}
+      {/* Dummy element to scroll to */}
+      <div ref={bottomRef} />
     </div>
   );
 }

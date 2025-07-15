@@ -41,6 +41,7 @@
   animation-delay: 0.4s;
 }
 
+
 @keyframes bolt-bounce {
   from {
     transform: translateY(0);
@@ -50,4 +51,20 @@
     transform: translateY(-10px);
     opacity: 1;
   }
+}
+
+.video-rendering-loader {
+  margin-top: 10px;
+  text-align: center;
+  color: #00ffe0;
+  font-size: 0.9rem;
+}
+.unified-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+  text-align: center;
+  color: #fff;
+  font-size: 0.95rem;
 }

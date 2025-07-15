@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { UpdateManimCode } from "@/functions/UpdateManimCode";
 import { ChatWithUser } from "@/functions/ChatWithUser";
 import { RenderVideo } from "@/functions/RenderVideo";
-import { VideoPlayer } from "./VideoPlayer";
+// import { VideoPlayer } from "./VideoPlayer";
 import ToasterUi from "toaster-ui";
 import "@/css/chatapp.css";
 let newChat = 0;
@@ -17,14 +17,16 @@ let newChat = 0;
 export function ChatApp({
   workspaceId,
   setWorkspaceId,
+  videoLink,
 }: {
   workspaceId: string;
   setWorkspaceId: (id: string) => void;
+  videoLink: (id: string) => void;
 }) {
   const createChat = useMutation(api.myFunctions.createChat);
   const sendMessage = useMutation(api.myFunctions.sendMessage);
   const createCode = useMutation(api.myFunctions.createCode);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [isRenderingVideo, setIsRenderingVideo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const toaster = new ToasterUi();
   const isNewChat = workspaceId === "new" && newChat === 0;
@@ -60,9 +62,12 @@ export function ChatApp({
           GetAiResponse(message).then((x) => {
             if (x) {
               GenarateManimCode(x).then((code) => {
+                setIsRenderingVideo(true);
                 RenderVideo(code).then((url) => {
-                  if (url) setVideoUrl(url);
+                  if (url) videoLink(url);
+                  setIsRenderingVideo(false);
                 });
+
                 if (code) {
                   toaster.addToast("Code Updated");
                   createCode({
@@ -70,12 +75,11 @@ export function ChatApp({
                     pythonCode: code,
                     prompt: x,
                   });
+                  setIsLoading(false); // STOP loading
                 }
               });
-
               sendMessage({ chatID: chatAttr, text: x, isLLM: true });
             }
-            setIsLoading(false); // STOP loading
           });
         });
       });
@@ -89,8 +93,10 @@ export function ChatApp({
         ChatWithUser(message, existingCode).then((x) => {
           if (x) {
             UpdateManimCode(message, existingCode).then((updatedCode) => {
+              setIsRenderingVideo(true);
               RenderVideo(updatedCode).then((url) => {
-                if (url) setVideoUrl(url);
+                if (url) videoLink(url);
+                setIsRenderingVideo(false);
               });
               if (updatedCode) {
                 toaster.addToast("Code Updated");
@@ -112,20 +118,28 @@ export function ChatApp({
   return (
     <div className="chat">
       {ChatId && <Chat chatid={ChatId} />}
-      {isLoading && (
-        <div className="bolt-loader-container">
+      {(isLoading || isRenderingVideo) && (
+        <div className="bolt-loader-container unified-loader">
           <div className="bolt-loader">
             <div></div>
             <div></div>
             <div></div>
           </div>
+          <p>
+            {isLoading && isRenderingVideo
+              ? "Working..."
+              : isRenderingVideo
+                ? "Rendering video..."
+                : "Loading..."}
+          </p>
         </div>
       )}
+
       <div className="chat-input-animate">
         {/* <ChatInput onSend={handleSend} /> */}
         <ChatInput onSend={handleSend} isNewChat={isNewChat} />
       </div>
-      {videoUrl && <VideoPlayer videoUrl={videoUrl} />}
+      {/* {videoUrl && <VideoPlayer videoUrl={videoUrl} />} */}
     </div>
   );
 }

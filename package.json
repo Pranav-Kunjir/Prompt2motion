@@ -18,16 +18,22 @@
     "@codemirror/theme-one-dark": "^6.1.2",
     "@convex-dev/auth": "^0.0.81",
     "@google/genai": "^0.14.0",
+    "@studio-freight/react-lenis": "^0.0.47",
     "@uiw/react-codemirror": "^4.23.13",
     "bootstrap-icons": "^1.13.1",
     "convex": "^1.23.0",
     "framer-motion": "^12.18.1",
+    "gl-matrix": "^3.4.3",
+    "gsap": "^3.13.0",
+    "ogl": "^1.0.11",
+    "openai": "^5.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "thememirror": "^2.0.1",
     "three": "^0.177.0",
     "toaster-ui": "^1.1.5",
-    "vanta": "^0.5.24"
+    "vanta": "^0.5.24",
+    "vanta-react": "^0.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

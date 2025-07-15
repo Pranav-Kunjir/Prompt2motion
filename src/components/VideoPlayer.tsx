@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "@/css/videoplayer.css";
-
+import ShinyText from "@/TextAnimations/ShinyText/ShinyText";
 interface VideoPlayerProps {
   videoUrl: string;
 }
@@ -15,7 +15,12 @@ export function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             className="open-video-btn"
             onClick={() => setShowPlayer(true)}
           >
-            ▶️ Play Video
+            <ShinyText
+              text="▶️ Play Video"
+              disabled={false}
+              speed={3}
+              className="render-btn"
+            />
           </button>
 
           {showPlayer && (

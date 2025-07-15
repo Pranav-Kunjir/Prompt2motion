@@ -1,8 +1,6 @@
 "use client";
-
+import { Landing } from "./pages/Landing";
 import { Authenticated, Unauthenticated } from "convex/react";
-import { SignIn } from "./SignIn";
-// import { SignOut } from "./auth/SignOut";
 import { AnimationWorkSpace } from "./pages/AnimationWorkSpace";
 
 export default function App() {
@@ -13,7 +11,7 @@ export default function App() {
           <AnimationWorkSpace />
         </Authenticated>
         <Unauthenticated>
-          <SignIn />
+          <Landing />
         </Unauthenticated>
       </main>
     </>

@@ -1,0 +1,56 @@
+.cta{
+    position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.overlay{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    text-align: center;
+    font-size: larger;
+}
+.overlay button {
+  margin: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #333333;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.overlay button:hover {
+  background-color: #111111;
+  border-color: #555555;
+  transform: scale(1.03);
+}
+
+.overlay button:active {
+  background-color: #0a0a0a;
+  transform: scale(0.98);
+}
+
+.overlay button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff33;
+}
+.feature-section{
+  margin-bottom:35vh;
+}
+.magneto{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.example-section h1{
+  text-align: center;
+  margin: 10vh;
+}

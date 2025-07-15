@@ -2,15 +2,20 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useState } from "react";
 import { SignOut } from "@/auth/SignOut";
+import icon from "@/assets/icon.png";
 import "@/css/sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export function Sidebar({
   userID,
   onChatSelect,
+  selectedChatId,
+  videoLink,
 }: {
   userID: string;
   onChatSelect: (id: string) => void;
+  selectedChatId: string;
+  videoLink: (id: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const { viewerImage } = useQuery(api.myFunctions.userData, {}) ?? {};
@@ -21,7 +26,7 @@ export function Sidebar({
   return (
     <>
       <div className="left-bar">
-        <p>ICON</p>
+        <img src={icon} alt="icon" />
         {/* Toggle Button */}
 
         <div className="bootom-btn">
@@ -89,9 +94,10 @@ export function Sidebar({
               chats.map((chat) => (
                 <p
                   key={chat._id}
-                  className="sidebar-chat"
+                  className={`sidebar-chat ${chat._id === selectedChatId ? "active" : ""}`}
                   onClick={() => {
                     onChatSelect(chat._id);
+                    videoLink("");
                     setIsOpen(false);
                   }}
                 >
