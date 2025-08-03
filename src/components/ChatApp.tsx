@@ -14,20 +14,32 @@ import ToasterUi from "toaster-ui";
 import "@/css/chatapp.css";
 let newChat = 0;
 
+type ChatAppProps = {
+  workspaceId: string;
+  setWorkspaceId: (id: string) => void;
+  videoLink: (id: string) => void;
+  manimError: (id: string) => void;
+  setIsLoading: (loading: boolean) => void;
+  setIsRenderingVideo: (rendering: boolean) => void;
+  isLoading: boolean;
+  isRenderingVideo: boolean;
+};
+
 export function ChatApp({
   workspaceId,
   setWorkspaceId,
   videoLink,
-}: {
-  workspaceId: string;
-  setWorkspaceId: (id: string) => void;
-  videoLink: (id: string) => void;
-}) {
+  manimError,
+  setIsLoading, // Destructure the new prop
+  setIsRenderingVideo, // Destructure the new prop
+  isLoading,
+  isRenderingVideo,
+}: ChatAppProps) {
   const createChat = useMutation(api.myFunctions.createChat);
   const sendMessage = useMutation(api.myFunctions.sendMessage);
   const createCode = useMutation(api.myFunctions.createCode);
-  const [isRenderingVideo, setIsRenderingVideo] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isRenderingVideo, setIsRenderingVideo] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const toaster = new ToasterUi();
   const isNewChat = workspaceId === "new" && newChat === 0;
   const [ChatId, setChatId] = useState<string | undefined>("");
@@ -63,7 +75,7 @@ export function ChatApp({
             if (x) {
               GenarateManimCode(x).then((code) => {
                 setIsRenderingVideo(true);
-                RenderVideo(code).then((url) => {
+                RenderVideo(code, manimError).then((url) => {
                   if (url) videoLink(url);
                   setIsRenderingVideo(false);
                 });
@@ -94,7 +106,7 @@ export function ChatApp({
           if (x) {
             UpdateManimCode(message, existingCode).then((updatedCode) => {
               setIsRenderingVideo(true);
-              RenderVideo(updatedCode).then((url) => {
+              RenderVideo(updatedCode, manimError).then((url) => {
                 if (url) videoLink(url);
                 setIsRenderingVideo(false);
               });

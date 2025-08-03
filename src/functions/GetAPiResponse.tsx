@@ -4,7 +4,7 @@ const APIKEY = import.meta.env.VITE_API_KEY;
 const ai = new GoogleGenAI({ apiKey: APIKEY });
 export async function GetAiResponse(message: string) {
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-2.5-pro",
     contents: `You are a prompt engineer. Your task is to generate a highly detailed and accurate prompt for another AI that will generate Python code using the Manim library.
 
             Instructions:

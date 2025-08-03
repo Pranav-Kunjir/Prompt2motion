@@ -7,12 +7,14 @@ import { useState } from "react";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { RenderAndPlayVideo } from "@/components/RenderAndPlayVideo";
 import "@/css/animationWorkSpace.css";
-
+import { HandleErrorComponent } from "@/components/HandleErrorComponent";
 export function AnimationWorkSpace() {
   const { viewer } = useQuery(api.myFunctions.userData, {}) ?? {};
   const [workspaceId, setWorkspaceId] = useState("new");
   const [videoLink, setVideoLink] = useState("");
-
+  const [manimError, setManimError] = useState("");
+  const [isRenderingVideo, setIsRenderingVideo] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <>
       <div className="workspace-container">
@@ -30,6 +32,11 @@ export function AnimationWorkSpace() {
               workspaceId={workspaceId}
               setWorkspaceId={setWorkspaceId}
               videoLink={setVideoLink}
+              manimError={setManimError}
+              setIsLoading={setIsLoading}
+              setIsRenderingVideo={setIsRenderingVideo}
+              isLoading={isLoading}
+              isRenderingVideo={isRenderingVideo}
             />
           </div>
           {workspaceId !== "new" && (
@@ -45,6 +52,19 @@ export function AnimationWorkSpace() {
               videoUrl={videoLink}
               workspaceId={workspaceId}
               setVideoUrl={setVideoLink}
+              manimError={setManimError}
+            />
+          )}
+        </div>
+        <div>
+          {manimError !== "" && (
+            <HandleErrorComponent
+              manimError={manimError}
+              videoLink={setVideoLink}
+              chatID={workspaceId}
+              setManimError={setManimError}
+              setIsLoading={setIsLoading}
+              setIsRenderingVideo={setIsRenderingVideo}
             />
           )}
         </div>

@@ -58,3 +58,69 @@
   cursor: pointer;
   margin-bottom: 0.5rem;
 }
+.open-video-btn {
+  background-color: #111;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.open-video-btn:hover {
+  background-color: #333;
+}
+
+.floating-player {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  max-width: 720px;
+  width: fit-content;       /* Wraps tightly to content width */
+  display: inline-block;
+  height: fit-content;
+}
+.floating-player video {
+  display: block;
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+
+.dark-theme video {
+  border-radius: 10px;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.close-btn,
+.download-btn {
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.close-btn:hover,
+.download-btn:hover {
+  background-color: #444;
+}

@@ -8,12 +8,14 @@ interface RenderAndPlayVideoProps {
   videoUrl: string;
   workspaceId: string;
   setVideoUrl: (url: string) => void;
+  manimError: (url: string) => void;
 }
 
 export function RenderAndPlayVideo({
   videoUrl,
   workspaceId,
   setVideoUrl,
+  manimError,
 }: RenderAndPlayVideoProps) {
   const convex = useConvex();
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +36,7 @@ export function RenderAndPlayVideo({
       const code = messages[0].pythonCode;
 
       // 2. Render the video using the fetched code
-      const renderedVideoURL = await RenderVideo(code);
+      const renderedVideoURL = await RenderVideo(code, manimError);
 
       if (renderedVideoURL) {
         setVideoUrl(renderedVideoURL);
