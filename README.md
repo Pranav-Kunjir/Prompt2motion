@@ -58,5 +58,4 @@ Iteratively refine your animation, preview results, and export high-quality MP4s
    ├─ Stores chats, messages, generated code
    ├─ Optional video storage with signed URLs
    └─ Handles user accounts & metadata
-
 ```
