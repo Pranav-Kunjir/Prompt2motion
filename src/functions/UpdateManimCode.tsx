@@ -8,7 +8,7 @@ export async function UpdateManimCode(message: string, code: string) {
   //   const ID = chatID.chatid;
   //   const code = useQuery(api.myFunctions.displayCode, { chatId: ID }) ?? [];
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-pro",
+    model: "gemini-2.0-flash",
     contents: `You are a Python expert specialized in using the Manim library to create animations.
                 Below is an existing Manim script:
                 ${code ?? ""}
@@ -39,7 +39,7 @@ export async function UpdateManimCode(message: string, code: string) {
 //         "Content-Type": "application/json",
 //       },
 //       body: JSON.stringify({
-//         model: "deepseek/deepseek-chat-v3-0324:free",
+//         model: "qwen/qwen3-coder:free",
 //         messages: [
 //           {
 //             role: "user",

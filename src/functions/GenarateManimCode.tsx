@@ -3,7 +3,7 @@ const APIKEY = import.meta.env.VITE_API_KEY;
 const ai = new GoogleGenAI({ apiKey: APIKEY });
 export async function GenarateManimCode(message: string) {
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-pro",
+    model: "gemini-2.0-flash",
     contents: `you will be given a prompt to generate manim code make sure to only return the code no explaination and nothing else
               ${message} `,
   });
@@ -23,7 +23,7 @@ export async function GenarateManimCode(message: string) {
 //         "Content-Type": "application/json",
 //       },
 //       body: JSON.stringify({
-//         model: "deepseek/deepseek-chat-v3-0324:free",
+//         model: "qwen/qwen3-coder:free",
 //         messages: [
 //           {
 //             role: "user",
