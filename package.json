@@ -18,7 +18,6 @@
     "@codemirror/theme-one-dark": "^6.1.2",
     "@convex-dev/auth": "^0.0.81",
     "@google/genai": "^0.14.0",
-    "@studio-freight/react-lenis": "^0.0.47",
     "@uiw/react-codemirror": "^4.23.13",
     "bootstrap-icons": "^1.13.1",
     "convex": "^1.23.0",
