@@ -5,6 +5,7 @@ import { SignOut } from "@/auth/SignOut";
 import icon from "@/assets/icon.png";
 import "@/css/sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import ApiDownloadCard from "@/components/ApiDownloadCard";
 
 export function Sidebar({
   userID,
@@ -21,6 +22,7 @@ export function Sidebar({
   const { viewerImage } = useQuery(api.myFunctions.userData, {}) ?? {};
   let chats = useQuery(api.myFunctions.getUserChats, { userId: userID }) ?? [];
   const [showMenu, setShowMenu] = useState(false);
+  const [showDownloadCard, setShowDownloadCard] = useState(false);
 
   // console.log(chats);
   return (
@@ -30,6 +32,14 @@ export function Sidebar({
         {/* Toggle Button */}
 
         <div className="bootom-btn">
+          <button
+            className="sidebar-download-btn"
+            onClick={() => setShowDownloadCard(true)}
+            title="Download rendering app"
+          >
+            <i className="bi bi-download"></i>
+          </button>
+
           <div className="profile-menu-wrapper">
             {viewerImage && (
               <img
@@ -108,6 +118,12 @@ export function Sidebar({
           </div>
         </div>
       </div>
+      {showDownloadCard && (
+        <ApiDownloadCard
+          visible={showDownloadCard}
+          setVisible={setShowDownloadCard}
+        />
+      )}
     </>
   );
 }

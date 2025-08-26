@@ -212,3 +212,20 @@
   margin-bottom: 1rem;
   transition: transform 0.3s ease;
 }
+.sidebar-download-btn {
+  background: #181a20;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5em 0.7em;
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.32);
+}
+
+.sidebar-download-btn:hover {
+  background: #23272f;
+  color: #fff;
+}

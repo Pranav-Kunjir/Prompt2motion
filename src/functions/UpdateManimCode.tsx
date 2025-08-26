@@ -39,7 +39,7 @@ export async function UpdateManimCode(message: string, code: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "deepseek/deepseek-chat-v3.1",
+        model: "qwen/qwen3-coder:free",
         messages: [
           {
             role: "user",
