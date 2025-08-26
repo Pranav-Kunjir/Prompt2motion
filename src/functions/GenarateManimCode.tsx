@@ -23,7 +23,7 @@ export async function GenarateManimCode(message: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "qwen/qwen3-coder:free",
+        model: "anthropic/claude-sonnet-4",
         messages: [
           {
             role: "user",
