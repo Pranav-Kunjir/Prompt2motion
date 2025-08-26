@@ -10,7 +10,7 @@ export async function HandleError(manimError: string, code: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama3-8b-8192",
+        model: "deepseek/deepseek-chat-v3-0324:free",
         messages: [
           {
             role: "user",

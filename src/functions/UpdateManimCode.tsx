@@ -39,7 +39,7 @@ export async function UpdateManimCode(message: string, code: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama3-8b-8192",
+        model: "eepseek/deepseek-chat-v3-0324:free",
         messages: [
           {
             role: "user",
