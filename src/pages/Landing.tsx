@@ -4,7 +4,6 @@ import { AnimatedCtaText } from "@/components/Landing/Animated-cta-text";
 import { SignIn } from "@/SignIn";
 import { FeatureSection } from "@/components/Landing/FeatureSection";
 import ShinyText from "@/TextAnimations/ShinyText/ShinyText";
-import { Example } from "@/components/Landing/Example";
 export function Landing() {
   return (
     <>
@@ -39,17 +38,6 @@ export function Landing() {
           </div>
           <FeatureSection />
         </div>
-      </div>
-      <div className="example-section">
-        <h1>
-          <ShinyText
-            text="Examples"
-            disabled={false}
-            speed={3}
-            className="render-btn"
-          />
-        </h1>
-        <Example />
       </div>
     </>
   );

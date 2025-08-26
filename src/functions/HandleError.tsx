@@ -70,6 +70,7 @@ export async function HandleError(manimError: string, code: string) {
               - If the error is due to syntax, logic, or a missing Manim construct, correct it accordingly.
               - Only make the minimal necessary changes to fix the error while preserving the rest of the animation logic.
               - If the original code is fundamentally flawed or incomplete, rewrite it as a valid and functional Manim script.
+              - Show to complete animation
 
               Output Format:
               - Return **only** the updated code.

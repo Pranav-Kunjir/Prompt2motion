@@ -71,28 +71,48 @@ export function ChatApp({
           setWorkspaceId(chatAttr);
           sendMessage({ chatID: chatAttr, text: message, isLLM: false });
 
-          GetAiResponse(message).then((x) => {
-            if (x) {
-              GenarateManimCode(x).then((code) => {
-                setIsRenderingVideo(true);
-                RenderVideo(code, manimError).then((url) => {
-                  if (url) videoLink(url);
-                  setIsRenderingVideo(false);
-                });
+          GetAiResponse(message)
+            .then((x) => {
+              if (x) {
+                GenarateManimCode(x)
+                  .then((code) => {
+                    if (code) {
+                      // ✅ Check if code exists before using it
+                      toaster.addToast("Code Updated");
+                      createCode({
+                        chatID: chatAttr,
+                        pythonCode: code,
+                        prompt: x,
+                      });
 
-                if (code) {
-                  toaster.addToast("Code Updated");
-                  createCode({
-                    chatID: chatAttr,
-                    pythonCode: code,
-                    prompt: x,
+                      // Only call RenderVideo if code exists
+                      setIsRenderingVideo(true);
+                      RenderVideo(code, manimError).then((url) => {
+                        if (url) videoLink(url);
+                        setIsRenderingVideo(false);
+                      });
+
+                      setIsLoading(false); // STOP loading
+                    } else {
+                      console.error("No code generated");
+                      setIsLoading(false); // STOP loading if no code
+                      setIsRenderingVideo(false);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error generating code:", error);
+                    setIsLoading(false);
+                    setIsRenderingVideo(false);
                   });
-                  setIsLoading(false); // STOP loading
-                }
-              });
-              sendMessage({ chatID: chatAttr, text: x, isLLM: true });
-            }
-          });
+                sendMessage({ chatID: chatAttr, text: x, isLLM: true });
+              } else {
+                setIsLoading(false); // STOP loading if no prompt response
+              }
+            })
+            .catch((error) => {
+              console.error("Error getting AI response:", error);
+              setIsLoading(false);
+            });
         });
       });
     } else {
@@ -102,27 +122,46 @@ export function ChatApp({
         sendMessage({ chatID: activeChatId, text: message, isLLM: false });
         const existingCode = codeData?.[0]?.pythonCode ?? "";
 
-        ChatWithUser(message, existingCode).then((x) => {
-          if (x) {
-            UpdateManimCode(message, existingCode).then((updatedCode) => {
-              setIsRenderingVideo(true);
-              RenderVideo(updatedCode, manimError).then((url) => {
-                if (url) videoLink(url);
-                setIsRenderingVideo(false);
-              });
-              if (updatedCode) {
-                toaster.addToast("Code Updated");
-                createCode({
-                  chatID: activeChatId,
-                  pythonCode: updatedCode,
-                  prompt: message,
+        ChatWithUser(message, existingCode)
+          .then((x) => {
+            if (x) {
+              UpdateManimCode(message, existingCode)
+                .then((updatedCode) => {
+                  if (updatedCode) {
+                    // ✅ Check if updatedCode exists
+                    toaster.addToast("Code Updated");
+                    createCode({
+                      chatID: activeChatId,
+                      pythonCode: updatedCode,
+                      prompt: message,
+                    });
+
+                    // Only call RenderVideo if updatedCode exists
+                    setIsRenderingVideo(true);
+                    RenderVideo(updatedCode, manimError).then((url) => {
+                      if (url) videoLink(url);
+                      setIsRenderingVideo(false);
+                    });
+                  } else {
+                    console.error("No updated code generated");
+                    setIsRenderingVideo(false);
+                  }
+                  sendMessage({ chatID: activeChatId, text: x, isLLM: true });
+                  setIsLoading(false); // STOP loading
+                })
+                .catch((error) => {
+                  console.error("Error updating code:", error);
+                  setIsLoading(false);
+                  setIsRenderingVideo(false);
                 });
-              }
-              sendMessage({ chatID: activeChatId, text: x, isLLM: true });
-              setIsLoading(false); // STOP loading
-            });
-          }
-        });
+            } else {
+              setIsLoading(false); // STOP loading if no chat response
+            }
+          })
+          .catch((error) => {
+            console.error("Error chatting with user:", error);
+            setIsLoading(false);
+          });
       }
     }
   };
