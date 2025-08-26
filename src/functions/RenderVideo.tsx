@@ -41,7 +41,7 @@ export async function RenderVideo(
   let manimErrorMessage: string | null = null;
 
   try {
-    const res = await fetch("https://manim2animationapi.onrender.com/render/", {
+    const res = await fetch("http://127.0.0.1:8000/render/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
