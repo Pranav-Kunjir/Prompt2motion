@@ -23,7 +23,7 @@ export async function GenarateManimCode(message: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "anthropic/claude-sonnet-4",
+        model: "deepseek/deepseek-r1-0528:free",
         messages: [
           {
             role: "user",
