@@ -8,7 +8,7 @@ export async function UpdateManimCode(message: string, code: string) {
   //   const ID = chatID.chatid;
   //   const code = useQuery(api.myFunctions.displayCode, { chatId: ID }) ?? [];
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-2.5-pro",
     contents: `You are a Python expert specialized in using the Manim library to create animations.
                 Below is an existing Manim script:
                 ${code ?? ""}

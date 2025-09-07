@@ -54,7 +54,7 @@ const ai = new GoogleGenAI({ apiKey: APIKEY });
 
 export async function HandleError(manimError: string, code: string) {
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-2.5-pro",
     contents: `
               You are a Python expert specializing in the Manim library for mathematical animations.
 
