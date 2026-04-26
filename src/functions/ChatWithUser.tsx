@@ -1,11 +1,20 @@
-import { GoogleGenAI } from "@google/genai";
-
-const APIKEY = import.meta.env.VITE_API_KEY;
-const ai = new GoogleGenAI({ apiKey: APIKEY });
 export async function ChatWithUser(message: string, code: string) {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: `You are a Python and Manim expert.
+  const response = await fetch(
+    "https://openrouter.ai/api/v1/chat/completions",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_KEY}`,
+        "HTTP-Referer": "<YOUR_SITE_URL>",
+        "X-Title": "<YOUR_SITE_NAME>",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: import.meta.env.VITE_OPENROUTER_MODEL,
+        messages: [
+          {
+            role: "user",
+            content: `You are a Python and Manim expert.
                 You will be given two inputs:
                 1. A user's request to change or create an animation.
                 2. Existing Python code using the Manim library.
@@ -30,7 +39,16 @@ export async function ChatWithUser(message: string, code: string) {
                 ---
 
                 Respond with a clear explanation of what the animation will do.`,
-  });
-  return response.text;
+          },
+        ],
+      }),
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to chat with user");
+  }
+
+  const data = await response.json();
+  return data.choices[0].message.content;
 }
-// export default GetAiResponse;
